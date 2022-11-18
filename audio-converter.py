@@ -8,7 +8,11 @@ def create_app():
 
 app = create_app()
 
-@app.route('/converter', methods=['POST'])
+@app.route('/', methods=['GET'])
+def debug():
+      return jsonify({ 'message': 'ok' })
+
+@app.route('/', methods=['POST'])
 def convert_audio():
       data = request.get_json()
       temp_file = open("temp.aac", "wb")
