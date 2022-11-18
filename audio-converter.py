@@ -1,18 +1,12 @@
-from flask import Flask
-from flask import jsonify
-from flask import request
+from flask import Flask, jsonify, request
 from flask_cors import CORS
-import ffmpeg
-import base64
-import wave
-import json
+import ffmpeg, base64, wave, os
 
 def create_app():
     app = Flask(__name__)
     return app
 
 app = create_app()
-CORS(app)
 
 @app.route('/converter', methods=['POST'])
 def convert_audio():
@@ -37,7 +31,13 @@ def convert_audio():
       converted_audio = {
             'base64': str(audio_data)
       }
+      os.remove("temp.aac")
+      os.remove("temp.wav")
       return jsonify(converted_audio)
 
 if __name__ == '__main__':
-    app.run(port=8000, debug=True)
+      import ssl
+      context = ssl.SSLContext()
+      context.load_cert_chain("/etc/ssl/certs/conversational_ugr_es.pem","/etc/ssl/certs/conversational_ugr_es.key")
+      CORS(app)
+      app.run(host='0.0.0.0',port=5100,ssl_context=context,debug=False)
