@@ -14,12 +14,13 @@ def debug():
 
 @app.route('/', methods=['POST'])
 def convert_audio():
+      print ('Iniciando')
       data = request.get_json()
       temp_file = open("temp.aac", "wb")
       decode_string = base64.b64decode(data['base64'])
       temp_file.write(decode_string)
       temp_file.close()
-
+      print (decode_string)
       audio = (
             ffmpeg
             .input("temp.aac")
@@ -37,6 +38,7 @@ def convert_audio():
       }
       os.remove("temp.aac")
       os.remove("temp.wav")
+      print (converted_audio)
       return jsonify(converted_audio)
 
 if __name__ == '__main__':
