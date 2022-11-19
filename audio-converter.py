@@ -24,7 +24,7 @@ def convert_audio():
       audio = (
             ffmpeg
             .input("temp.aac")
-            .output("temp.wav", acodec='pcm_s16le', ac=1, ar='16k')
+            .output("temp.raw", acodec='mulaw', ac=1, ar='8k')
             .overwrite_output()
             .run()
       )
@@ -47,3 +47,5 @@ if __name__ == '__main__':
       context.load_cert_chain("/etc/ssl/certs/conversational_ugr_es.pem","/etc/ssl/certs/conversational_ugr_es.key")
       CORS(app)
       app.run(host='0.0.0.0',port=5100,ssl_context=context,debug=False)
+      # CORS(app)
+      # app.run(port=5100, debug=False)
