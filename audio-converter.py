@@ -1,6 +1,8 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import ffmpeg, base64, wave, os
+import librosa
+import soundfile as sf
 
 def create_app():
     app = Flask(__name__)
@@ -28,7 +30,8 @@ def convert_audio():
             .overwrite_output()
             .run()
       )
-
+      x,_ = librosa.load('temp.wav', sr=8000)
+      sf.write('temp.wav', x, 8000)
       with open("temp.wav", "rb") as wav_file:
             wav_data = wave.open(wav_file)
             audio_data = wav_data.readframes(wav_data.getnframes())
