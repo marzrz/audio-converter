@@ -24,7 +24,7 @@ def convert_audio():
       audio = (
             ffmpeg
             .input("temp.aac")
-            .output("temp.wav", pcm='mu-law', ac=1, ar='8k')
+            .output("temp.wav", f='mulaw', ac=1, ar='8k')
             .overwrite_output()
             .run()
       )
