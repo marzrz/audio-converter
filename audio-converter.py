@@ -30,8 +30,8 @@ def convert_audio():
             .overwrite_output()
             .run()
       )
-      x,_ = librosa.load('temp.wav', sr=8000)
-      sf.write('temp.wav', x, 8000)
+      data, samplerate = sf.read("temp.wav")
+      sf.write("temp.wav", data, samplerate)
       with open("temp.wav", "rb") as wav_file:
             wav_data = wave.open(wav_file)
             audio_data = wav_data.readframes(wav_data.getnframes())
