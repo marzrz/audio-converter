@@ -41,11 +41,14 @@ def convert_audio():
       with open("temp.wav", 'rb') as f:
             contents = f.read()
             audio_data = base64.standard_b64encode(contents)
+      
+      audio_data = str(audio_data)
       audio_data = audio_data.replace("b'", "")
       audio_data = audio_data.replace("'", "")
       print(audio_data)
+      
       converted_audio = {
-            'base64': str(audio_data)
+            'base64': audio_data
       }
       os.remove("temp.aac")
       os.remove("temp.wav")
