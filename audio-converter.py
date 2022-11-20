@@ -40,7 +40,7 @@ def convert_audio():
       #       audio_data = wav_data.readframes(wav_data.getnframes())
       with open("temp.wav", 'rb') as f:
             contents = f.read()
-            audio_data = base64.b64encode(contents)
+            audio_data = base64.standard_b64encode(contents)
             
       print(audio_data)
       converted_audio = {
