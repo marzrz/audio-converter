@@ -32,13 +32,13 @@ def convert_audio():
       )
       # data = open("temp.webm", "r")
       # encoded = base64.b64encode(data)
-
+      audio_data = base64.b64encode(open("temp.wav").read())
       # data, samplerate = sf.read("temp.wav")
       # sf.write("temp.wav", data, samplerate)
-      with open("temp.wav", "rb") as wav_file:
-            webm_data = wave.open(wav_file)
-            # encoded = base64.b64encode(webm_file)
-            audio_data = base64.b64encode(wav_file)
+      # with open("temp.wav", "rb") as wav_file:
+      #       webm_data = wave.open(wav_file)
+      #       # encoded = base64.b64encode(webm_file)
+      #       audio_data = base64.b64encode(wav_file)
       print(audio_data)
       converted_audio = {
             'base64': str(audio_data)
