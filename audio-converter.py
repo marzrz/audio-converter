@@ -38,7 +38,7 @@ def convert_audio():
       with open("temp.wav", "rb") as wav_file:
             webm_data = wave.open(wav_file)
             # encoded = base64.b64encode(webm_file)
-            audio_data = webm_data.readframes(webm_data.getnframes())
+            audio_data = base64.b64encode(wav_file)
       print(audio_data)
       converted_audio = {
             'base64': str(audio_data)
