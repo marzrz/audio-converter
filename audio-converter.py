@@ -26,7 +26,7 @@ def convert_audio():
       audio = (
             ffmpeg
             .input("temp.aac")
-            .output("temp.webm", f='webm')
+            .output("temp.wav", f='wav')
             .overwrite_output()
             .run()
       )
@@ -35,16 +35,16 @@ def convert_audio():
 
       # data, samplerate = sf.read("temp.wav")
       # sf.write("temp.wav", data, samplerate)
-      with open("temp.webm", "rb") as webm_file:
-            # webm_data = wave.open(webm_file)
-            encoded = base64.b64encode(webm_file)
-            # audio_data = webm_data.readframes(webm_data.getnframes())
-      print(encoded)
+      with open("temp.wav", "rb") as wav_file:
+            webm_data = wave.open(wav_file)
+            # encoded = base64.b64encode(webm_file)
+            audio_data = webm_data.readframes(webm_data.getnframes())
+      print(audio_data)
       converted_audio = {
-            'base64': str(encoded)
+            'base64': str(audio_data)
       }
       os.remove("temp.aac")
-      os.remove("temp.webm")
+      os.remove("temp.wav")
       print (converted_audio)
       return jsonify(converted_audio)
 
