@@ -47,7 +47,7 @@ def convert_audio():
             'base64': str(audio_data)
       }
       os.remove("temp.aac")
-      os.remove("temp.webm")
+      os.remove("temp.wav")
       print (converted_audio)
       return jsonify(converted_audio)
 
