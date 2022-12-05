@@ -45,14 +45,12 @@ def convert_audio():
       audio_data = str(audio_data)
       audio_data = audio_data.replace("b'", "")
       audio_data = audio_data.replace("'", "")
-      print(audio_data)
       
       converted_audio = {
             'base64': audio_data
       }
       os.remove("temp.aac")
       os.remove("temp.wav")
-      print (converted_audio)
       return jsonify(converted_audio)
 
 if __name__ == '__main__':
